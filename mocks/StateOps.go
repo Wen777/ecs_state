@@ -9,6 +9,24 @@ type StateOps struct {
 	mock.Mock
 }
 
+func (_m *StateOps) FindClusterByName(td string) *Cluster {
+	ret := _m.Called(td)
+
+	var r0 *[]ecsstate.Cluster
+	if rf, ok := ret.Get(0).(func(string) *[]ecsstate.Cluster); ok {
+		r0 = rf(td)
+
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*[]ecsstate.Cluster)
+
+		}
+
+	}
+	return r0
+
+}
+
 // FindLocationsForTaskDefinition provides a mock function with given fields: td
 func (_m *StateOps) FindLocationsForTaskDefinition(td string) *[]ecsstate.ContainerInstance {
 	ret := _m.Called(td)
